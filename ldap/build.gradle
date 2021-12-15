@@ -1,0 +1,24 @@
+plugins {
+    id 'java'
+}
+
+group 'ee.siimp'
+version '1.0.0'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'com.unboundid:unboundid-ldapsdk:6.0.3'
+}
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'ee.siimp.ldap.LDAPRefServer'
+    }
+
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}
