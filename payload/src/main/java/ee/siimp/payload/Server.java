@@ -27,13 +27,11 @@ public class Server {
     static class PayloadHttpHandler implements HttpHandler {
         @Override
         public void handle(HttpExchange exchange) throws IOException {
-            byte[] payloadClassFile = Files.readAllBytes(Paths.get(
-                    ".", "src", "main", "java", "Payload.class"));
-            OutputStream outputStream = exchange.getResponseBody();
-            exchange.sendResponseHeaders(200, payloadClassFile.length);
-            outputStream.write(payloadClassFile);
-            outputStream.flush();
-            outputStream.close();
+            byte[] payloadClassFile = Files.readAllBytes(Paths.get( "src", "main", "java", "Payload.class"));
+            try (OutputStream outputStream = exchange.getResponseBody()) {
+                exchange.sendResponseHeaders(200, payloadClassFile.length);
+                outputStream.write(payloadClassFile);
+            }
         }
     }
 
