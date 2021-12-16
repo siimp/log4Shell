@@ -7,7 +7,7 @@ import javax.naming.NamingException;
 public class TestJndi {
     public static void main(String[] args) throws NamingException {
         System.setProperty("com.sun.jndi.ldap.object.trustURLCodebase", "true");
-        String uri = "ldap://0.0.0.0:636/a" ;
+        String uri = "ldap://0.0.0.0:389/a" ;
         Context ctx = new InitialContext();
         ctx.lookup(uri);
     }

