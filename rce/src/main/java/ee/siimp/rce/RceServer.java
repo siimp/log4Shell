@@ -26,14 +26,12 @@ public class RceServer {
                 in.lines().forEach(System.out::println);
             }).start();
 
-            Thread.sleep(1000);
-
-            while(!socket.isClosed()) {
+            while (!socket.isClosed()) {
                 System.out.print("rce>");
                 String command = cmdIn.readLine();
                 out.println(command);
+                Thread.sleep(100);
             }
-
         }
     }
 }

